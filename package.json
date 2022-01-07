@@ -5,11 +5,19 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "lint": "eslint --fix --quiet src --ext .js,.svelte",
+    "format": "prettier --write --plugin-search-dir= 'src/**/*.{js,svelte}'"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.6.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-svelte3": "^3.3.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.5.1",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
