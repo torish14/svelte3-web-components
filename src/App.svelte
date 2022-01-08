@@ -45,8 +45,12 @@ const lifegame = createLifeGame(row_size, column_size)
 }
 
 .cell {
-	width: 20px;
-	height: 20px;
-	background-color: #eee;
+  width: 20px;
+  height: 20px;
+  background-color: #eee;
+}
+
+.cell.alive {
+  background-color: red;
 }
 </style>
