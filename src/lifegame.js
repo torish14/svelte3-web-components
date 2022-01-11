@@ -41,3 +41,51 @@ function toggle(oldState, row, col) {
   }
 	return newState
 }
+
+// ライフゲームのルール
+function isCellAliveWhenNextTick(oldState, row, col) {
+  const directions = [
+    [-1, -1], [-1, +0], [+1, +1], [+0, -1],/**/ [+0, +1], [+1, -1], [
+1, +0], [+1, +1],
+  ]
+
+  // 隣接するセルの生きたセルを教える
+  let count = 0
+
+  for (const d of directions) {
+    const newRow = row + d[0]
+    const newCol = col + d[1]
+    if (newRow < 0 || oldState.rowSize - 1 < newRow) {
+      continue
+    }
+    if (newCol < 0 || oldState.colSize - 1 < newCol) {
+      continue
+    }
+    if(oldState.grid[newRow][newCol].isAlive) {
+      count++
+    }
+  }
+
+  if(oldState.grid[row][col].isAlive) {
+    // 過疎？
+    if(count <= 1) {
+      return false
+    // 生存？
+    } else if(count === 2 || count === 3) {
+      return true
+    // 過密？
+    } else if (count >= 4) {
+      return false
+    } else {
+      // 上記までで条件を網羅しているので、ここには来ない
+      throw new Error('実装ミス')
+    }
+  } else {
+    // 誕生？
+    if(count === 3) {
+      return true
+    }
+    // 何も起こらない
+    return false
+  }
+}
