@@ -13,6 +13,9 @@
       {/each}
     </div>
   </div>
+  <div class="lifegame-controller-container">
+    <button on:click={(e) => lifegame.moveNextTick()}>1ターン進める</button>
+  </div>
 </div>
 
 <script>
