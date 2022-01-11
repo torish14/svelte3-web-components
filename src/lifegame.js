@@ -45,8 +45,7 @@ function toggle(oldState, row, col) {
 // ライフゲームのルール
 function isCellAliveWhenNextTick(oldState, row, col) {
   const directions = [
-    [-1, -1], [-1, +0], [+1, +1], [+0, -1],/**/ [+0, +1], [+1, -1], [
-1, +0], [+1, +1],
+    [-1, -1], [-1, +0], [+1, +1], [+0, -1],/**/ [+0, +1], [+1, -1], [+1, +0], [+1, +1],
   ]
 
   // 隣接するセルの生きたセルを教える
@@ -88,4 +87,18 @@ function isCellAliveWhenNextTick(oldState, row, col) {
     // 何も起こらない
     return false
   }
+}
+
+// ライフゲームのターンをひとつ進める
+function moveNextTick(oldState) {
+  const newState = JSON.parse(JSON.stringify(oldState))
+  for (let i = 0; i < newState.rowSize; i++) {
+    for (let j = 0; j < newState.colSize; j++) {
+      newState.grid[i][j] = {
+        ...newState.grid[i][j],
+        isAlive: isCellAliveWhenNextTick(oldState, i, j),
+      }
+    }
+  }
+  return newState
 }
